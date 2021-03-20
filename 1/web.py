@@ -20,5 +20,10 @@ def spec(prof):
     return render_template('ex1.html', prof=pr)
 
 
+@app.route('/list_prof/<list>')
+def draw_list(list):
+    return render_template('ex2.html', list=list)
+
+
 if __name__ == '__main__':
     app.run(port=80, host='127.0.0.1')

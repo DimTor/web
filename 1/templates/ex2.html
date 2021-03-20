@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Спиcок профессий</h2>
+{% set user_list = ['Врач', 'Инженер', 'Программист', 'Эколог', 'Водитель'] %}
+
+    {% if list == 'ul' %}
+    {% for user in user_list %}
+    <li>{{ user }}</li>
+    {% endfor %}
+    {% elif list == 'ol' %}
+    <ol>
+    {% for user in user_list %}
+        <li>{{ user }}</li>
+    {% endfor %}
+    </ol>
+    {% endif %}
+{% endblock %}
