@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for
 
 app = Flask(__name__)
 
@@ -24,6 +24,149 @@ def spec(prof):
 def draw_list(list):
     return render_template('ex2.html', list=list)
 
+
+@app.route('/promotion')
+def promotion():
+    m = ['Человечество вырастает из детства.', 'Человечеству мала одна планета.',
+         'Мы сделаем обитаемыми безжизненные пока планеты.', 'И начнем с Марса!', 'Присоединяйся!']
+    return '</br>'.join(m)
+
+
+@app.route('/image_mars')
+def image():
+    return f"""<!doctype html>
+                    <html lang="en">
+                      <head>
+                        <meta charset="utf-8">
+                        <title>Привет, Яндекс!</title>
+                      </head>
+                      <body>
+                        <h1>Привет, Марс</h1>
+                        <img src="{url_for('static', filename='img/riana.jpg')}" width="100" height="100">
+                        <p>Вот она какая</p>
+                      </body>
+                    </html>"""
+
+
+@app.route('/promotion_image')
+def bootstrap():
+    return f'''<!doctype html>
+                <html lang="en">
+                  <head>
+                    <meta charset="utf-8">
+                    <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/st1.css')}" />
+                    <title>Привет, Яндекс!</title>
+                    <link rel="stylesheet" 
+                    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+                    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+                    crossorigin="anonymous">
+                  </head>
+                  <body>
+                    <h1>Привет, Яндекс!</h1>
+                    <img src="{url_for('static', filename='img/riana.jpg')}" width="100" height="100">
+                       <div class="alert alert-primary" role="alert">
+                      Марс
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                      Жди
+                    </div>
+                    <div class="alert alert-danger" role="alert">
+                      Придем
+                    </div>
+                    <div class="alert alert-success" role="alert">
+                      Скоро....
+                    </div>
+                  </body>
+                </html>'''
+
+
+@app.route('/form_sample', methods=['POST', 'GET'])
+def form_sample():
+    if request.method == 'GET':
+        return render_template('form.html')
+    elif request.method == 'POST':
+        answer['surname'] = request.form.get('surname')
+        answer['name'] = request.form.get('name')
+        answer['education'] = request.form.get('class')
+        answer['profession'] = ', '.join(request.form.getlist('accept'))
+        answer['sex'] = request.form.get('sex')
+        if request.form.get('accept7'):
+            answer['motivation'] = request.form.get('accept7')
+        else:
+            answer['motivation'] = 'нет'
+        answer['ready'] = request.form.get('se')
+
+        return "Форма отправлена"
+
+
+@app.route('/choice/<planet_name>')
+def planeta(planet_name):
+    return f'''<!doctype html>
+                    <html lang="en">
+                      <head>
+                        <meta charset="utf-8">
+                        <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/st1.css')}" />
+                        <title>Привет, {planet_name}</title>
+                        <link rel="stylesheet" 
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+                        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+                        crossorigin="anonymous">
+                      </head>
+                      <body>
+                        <h1>Привет, {planet_name}!</h1>
+                           <div class="alert alert-primary" role="alert">
+                          {planet_name}
+                        </div>
+                        <div class="alert alert-secondary" role="alert">
+                          Жди
+                        </div>
+                        <div class="alert alert-danger" role="alert">
+                          Придем
+                        </div>
+                        <div class="alert alert-success" role="alert">
+                          Скоро....
+                        </div>
+                      </body>
+                    </html>'''
+
+
+@app.route('/results/<nickname>/<int:level>/<float:rating>')
+def result(nickname, level, rating):
+    return f'''<!doctype html>
+                <html lang="en">
+                  <head>
+                    <meta charset="utf-8">
+                    <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/st1.css')}" />
+                    <title>Привет, Яндекс!</title>
+                    <link rel="stylesheet" 
+                    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+                    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+                    crossorigin="anonymous">
+                  </head>
+                  <body>
+                    <h1>Здравствуйте, {nickname}!</h1>
+                       <div class="alert alert-primary" role="alert">
+                      Ваш рейтинг после {str(level)} этапа отбора
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                      Составляет {str(rating)}
+                    </div>
+                    <div class="alert alert-danger" role="alert">
+                      Круто!
+                    </div>
+                  </body>
+                </html>'''
+
+
+@app.route('/answer')
+@app.route('/auto_answer')
+def auto_answer():
+    return render_template('auto_answer.html', surname=answer['surname'], name=answer['name'],
+                           education=answer['education'], prof=answer['profession'], sex=answer['sex'],
+                           mot=answer['motivation'], ready=answer['ready'])
+
+
+answer = {}
 
 if __name__ == '__main__':
     app.run(port=80, host='127.0.0.1')

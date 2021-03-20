@@ -1,0 +1,88 @@
+<!doctype html>
+                        <html lang="en">
+                          <head>
+                            <meta charset="utf-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                            <link rel="stylesheet"
+                            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+                            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+                            crossorigin="anonymous">
+                            <link rel="stylesheet" type="text/css" href="../css/style.css" />
+                            <title>Пример формы</title>
+                          </head>
+                          <body>
+                            <h1>Форма для регистрации в суперсекретной системе</h1>
+                            <div>
+                                <form class="login_form" method="post">
+                                    <input type="text" class="form-control" placeholder="Фамилия" aria-label="Фамилия" aria-describedby="basic-addon1" name="surname">
+                                    <input type="text" class="form-control" placeholder="Имя" aria-label="Имя" aria-describedby="basic-addon1" name="name">
+                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введите адрес почты" name="email">
+                                    <div class="form-group">
+                                        <label for="classSelect">В каком вы классе</label>
+                                        <select class="form-control" id="classSelect" name="class">
+                                          <option>Начальное</option>
+                                          <option>Основное общее</option>
+                                          <option>Среднее общее</option>
+                                          <option>Среднее профессиональное</option>
+                                          <option>Высшее</option>
+                                        </select>
+                                     </div>
+                                    <label for="профессия">Выбор основной профессии</label>
+                                    <div class="form-group form-check" id='профессия'>
+                                        <input type="checkbox" class="form-check-input" id="acceptRules" name="accept" value="инженер-исследователь">
+                                        <label class="form-check-label" for="acceptRules">инженер-исследователь</label>
+                                    </div>
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" id="acceptRules2" name="accept" value="пилот">
+                                        <label class="form-check-label" for="acceptRules2">пилот</label>
+                                    </div>
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" id="acceptRules3" name="accept" value="строитель">
+                                        <label class="form-check-label" for="acceptRules3">строитель</label>
+                                    </div>
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" id="acceptRules4" name="accept" value="экзобиолог">
+                                        <label class="form-check-label" for="acceptRules4">экзобиолог</label>
+                                    </div>
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" id="acceptRules5" name="accept" value="киберинженер">
+                                        <label class="form-check-label" for="acceptRules5">киберинженер</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="form-check">Укажите пол</label>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="sex" id="male" value="male" checked>
+                                          <label class="form-check-label" for="male">
+                                            Мужской
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="sex" id="female" value="female">
+                                          <label class="form-check-label" for="female">
+                                            Женский
+                                          </label>
+                                        </div>
+                                    </div>
+                                    <label for="Мот">Мотивация</label>
+                                    <div class="form-group form-check" id='Мот'>
+                                        <input type="checkbox" class="form-check-input" id="acceptRules7" name="accept7" value="есть">
+                                        <label class="form-check-label" for="acceptRules7">Есть</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="form-check">Готовы ли остаться на Марсе?</label>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="se" id="mal" value="Готов" checked>
+                                          <label class="form-check-label" for="mal">
+                                            Да
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="se" id="femal" value="Нет">
+                                          <label class="form-check-label" for="femal">
+                                            Нет
+                                          </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Записаться</button>
+                                </form>
+                            </div>
