@@ -175,6 +175,19 @@ def distrib():
     return render_template('distribution.html', name=name)
 
 
+@app.route('/table/<sex>/<int:years>')
+def table(sex, years):
+    typ = 1
+    if sex == 'male' and years < 21:
+        typ = 1
+    elif sex == 'male' and years >= 21:
+        typ = 2
+    elif sex == 'female' and years < 21:
+        typ = 3
+    elif sex == 'female' and years >= 21:
+        typ = 4
+    return render_template('table.html', type=typ)
+
 
 if __name__ == '__main__':
     app.run(port=80, host='127.0.0.1')

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if type == 1 %}
+<table>
+    <tr align="center"><td>Цвет стены</td><td>Эмблема</td>
+    <tr><td bgcolor="blue"></td><td><img src="../../static/img/mars_kid.png"></td>
+</table>
+{% elif type == 2 %}
+<table>
+    <tr align="center"><td>Цвет стены</td><td>Эмблема</td>
+    <tr><td bgcolor="orange"></td><td><img src="../../static/img/mars_adult.jpg"></td>
+</table>
+{% elif type == 3 %}
+<table>
+    <tr align="center"><td>Цвет стены</td><td>Эмблема</td>
+    <tr><td bgcolor="pink"></td><td><img src="../../static/img/mars_kid.png"></td>
+</table>
+{% elif type == 4 %}
+<table>
+    <tr align="center"><td>Цвет стены</td><td>Эмблема</td>
+    <tr><td bgcolor="red"></td><td><img src="../../static/img/mars_adult.jpg"></td>
+</table>
+{% endif %}
+
+{% endblock %}
