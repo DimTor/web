@@ -168,5 +168,13 @@ def auto_answer():
 
 answer = {}
 
+
+@app.route('/distribution')
+def distrib():
+    name = ['Tom', 'Sam', 'Ridlly', 'York']
+    return render_template('distribution.html', name=name)
+
+
+
 if __name__ == '__main__':
     app.run(port=80, host='127.0.0.1')

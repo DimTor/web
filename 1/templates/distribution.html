@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set user_list = name %}
+{% set caut = 'Каюта №' %}
+<h2 align="center"> Размещение по каютам </h2>
+{% for user in user_list %}
+<h5>{{ user }} - {{ caut }} {{ loop.index }} {% if loop.first %} - капитан корабля {% endif %}
+</h5>
+{% endfor %}
+
+{% endblock %}
