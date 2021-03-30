@@ -199,5 +199,24 @@ def login():
     return render_template('login.html', form=form)
 
 
+@app.route('/load_photo', methods=['GET', 'POST'])
+def load_photo():
+    if request.method == 'GET':
+        return render_template('load_photo.html', pic=True)
+    elif request.method == 'POST':
+        f = request.files['file']
+        z = open(f'static/img/{f.filename}', 'wb')
+        z.write(f.read())
+        z.close()
+        print(f.filename)
+        s = f'../../static/img/{f.filename}'
+        return render_template('load_photo.html', pic=False, name=s)
+
+
+@app.route('/carousel')
+def carousel():
+    return render_template('carousel.html')
+
+
 if __name__ == '__main__':
     app.run(port=80, host='127.0.0.1')

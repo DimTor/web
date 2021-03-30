@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="alert alert-primary" role="alert">
+    <h3>Загрузка фотографии</h3>
+</div>
+    <form method="post" enctype="multipart/form-data">
+                               <div class="form-group">
+                                    <label for="photo">Выберите файл</label>
+                                    <input type="file" class="form-control-file" id="photo" name="file">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Отправить</button>
+                            </form>
+
+{% if pic %}
+<p>Ещё нет картинки</p>
+{% else %}
+<img src={{name}} alt="ddddd">
+{% endif %}
+{% endblock %}
