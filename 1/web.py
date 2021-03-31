@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect
 from data.loginform import LoginForm
+import os
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -208,7 +210,6 @@ def load_photo():
         z = open(f'static/img/{f.filename}', 'wb')
         z.write(f.read())
         z.close()
-        print(f.filename)
         s = f'../../static/img/{f.filename}'
         return render_template('load_photo.html', pic=False, name=s)
 
@@ -216,6 +217,33 @@ def load_photo():
 @app.route('/carousel')
 def carousel():
     return render_template('carousel.html')
+
+
+@app.route('/galery', methods=['POST', 'GET'])
+def galery():
+    if request.method == 'GET':
+        directory = 'static/img'
+        files = os.listdir(directory)
+        file = []
+        for n, i in enumerate(files):
+            if n == 0:
+                continue
+            file.append(f'../../static/img/{i}')
+        return render_template('galery.html', img=file)
+    elif request.method == 'POST':
+        f = request.files['file']
+        print(f.filename)
+        z = open(f'static/img/{f.filename}', 'wb')
+        z.write(f.read())
+        z.close()
+        directory = 'static/img'
+        files = os.listdir(directory)
+        file = []
+        for n, i in enumerate(files):
+            if i == 'alien_1.png':
+                continue
+            file.append(f'../../static/img/{i}')
+        return render_template('galery.html', img=file)
 
 
 if __name__ == '__main__':
