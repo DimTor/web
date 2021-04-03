@@ -1,3 +1,6 @@
+import json
+import random
+
 from flask import Flask, render_template, request, url_for, redirect
 from data.loginform import LoginForm
 import os
@@ -8,7 +11,6 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 @app.route('/')
-@app.route('/<title>')
 @app.route('/index/<title>')
 def index(title='Noname'):
     return render_template('base.html', title=title)
@@ -244,6 +246,17 @@ def galery():
                 continue
             file.append(f'../../static/img/{i}')
         return render_template('galery.html', img=file)
+
+
+@app.route('/member')
+def member():
+    number = random.randint(0, 4)
+    with open('templates/json.json', 'r') as fj:
+        file = json.load(fj)[number]
+        name = file['surname'] + ' ' + file['name']
+        photo = file['photo']
+        speciality = file['speciality']
+    return render_template('member.html', name=name, photo=photo, speciality=speciality)
 
 
 if __name__ == '__main__':

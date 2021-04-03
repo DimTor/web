@@ -1,0 +1,5 @@
+[{"surname": "Scott", "name": "Ridley", "photo": "../../static/img/astronaut.png", "speciality": "research engineer"},
+{"surname": "Weir", "name": "Andy", "photo": "../../static/img/alien_1.png", "speciality": "geologist"},
+{"surname": "Watny", "name": "Mark", "photo": "../../static/img/astronaut2.png", "speciality": "biologist"},
+{"surname": "Kapoor", "name": "Venkat", "photo": "../../static/img/astronaut3.png", "speciality": "pilot, navigator"},
+{"surname": "Sanders", "name": "Teddy", "photo": "../../static/img/astronaut4.png", "speciality": "IT specialist"}]
