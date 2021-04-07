@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 align="center">Nostalgia</h1>
+<h2>{{ data['users']['surname'] }} {{ data['users']['name'] }}</h2>
+<h2> Hometown {{ data['users']['city_from'] }} </h2>
+<img src={{ photo }} align="center">
+
+{% endblock %}

@@ -1,7 +1,9 @@
+import requests
 from flask import Flask, render_template, redirect, make_response, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from requests import post
 from data import db_session, jobs_api
+from data import users_api
 from data.add_job import AddJobForm
 from data.login_form import LoginForm
 from data.users import User
@@ -29,6 +31,21 @@ api.add_resource(JobsListResource, '/api/v2/jobs')
 # для одного объекта
 api.add_resource(UsersResource, '/api/v2/users/<int:user_id>')
 api.add_resource(JobsResource, '/api/v2/jobs/<int:jobs_id>')
+
+
+def geocod(address):
+    geocoder_request = f"http://geocode-maps.yandex.ru/1.x/?apikey=40d1649f-0493-4b70-98ba-98533de77" \
+                       f"10b&geocode={address}&format=json"
+    response = requests.get(geocoder_request)
+    if response:
+        json_response = response.json()
+        toponym = json_response["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
+        toponym_coodrinates = toponym["Point"]["pos"]
+        return ','.join(toponym_coodrinates.split())
+    else:
+        print("Ошибка выполнения запроса:")
+        print(geocoder_request)
+        print("Http статус:", response.status_code, "(", response.reason, ")")
 
 
 @login_manager.user_loader
@@ -263,9 +280,18 @@ def dep_delete(dep_id):
     return redirect('/departments')
 
 
+@app.route('/users_show/<int:user_id>')
+def users_show(user_id):
+    req = requests.get(f'http://localhost:5000/api/users_show/{user_id}').json()
+    s = geocod(req['users']['city_from'])
+    request_fot = f"http://static-maps.yandex.ru/1.x/?ll={s}&spn=1,1&l=map"
+    return render_template('show_city.html', data=req, photo=request_fot)
+
+
 def main():
     db_session.global_init("db/mars_explorer.sqlite")
     app.register_blueprint(jobs_api.blueprint)
+    app.register_blueprint(users_api.blueprint)
     app.run()
 
 
